@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown Web App</title>
+  <style>
+     /* Basic styling for layout */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .dropdowns {
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+        }
+        .grid {
+            display: inline-grid;
+            grid-template-columns: repeat(2, 1fr);
+
+        }
+        .grid2 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        select, input[type = "text"] {
+            padding: 8px;
+            font-size: 16px;
+            width: 200px; /* Fixed width for all dropdowns */
+        }
+        .dropdown {
+            margin: 10px;
+            /*width: 300px;*/
+            align-items: center;
+        }
+        .title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .totals {
+          margin-top: 20px;
+          font-size: 1.2em;
+          text-align: center;
+        }
+        .text-box {
+          margin: 15px 0;
+        }
+        .download-button {
+            padding:10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .download-button:hover{
+            background-color: #46a049;
+        }
+  </style>
+</head>
+<body>
+
+  <h1>CoH Incarnate BOM</h1>
+
+    <div class="container">
+        <!-- Text box for Character at the top -->
+        <div class="text-box">
+            <label for="character">Character</label><br>
+            <input type="text" id="character" placeholder="Enter character name">
+        </div>
+  <div class="dropdowns">
+  <div class="dropdown">
+    <div class="title">Hybrid</div>
+      <select id="dropdown-0" onchange="calculateTotals()">
+        <option value='{"label": "none", "arcane": 0, "biomorphic": 0, "detailed": 0, "enchanted": 0, "genomic": 0, "meditation": 0, "nanotech": 0, "supercharged": 0, "cytolitic": 0, "dimensional": 0, "gluon": 0, "worn": 0, "ancient": 0, "exotic": 0, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>none</option>
+        <option value='{"label": "assault / core (left)", "arcane": 5, "biomorphic": 0, "detailed": 2, "enchanted": 3, "genomic": 6, "meditation": 0, "nanotech": 0, "supercharged": 0, "cytolitic": 0, "dimensional": 1, "gluon": 0, "worn": 1, "ancient": 0, "exotic": 1, "semi": 1, "superconductive": 0, "forbidden": 0, "living": 1, "self": 0, "thaumic": 0 }'>assault / core (left)</option>
+        <option value='{"label": "assault / radial (right)", "arcane": 4, "biomorphic": 0, "detailed": 1, "enchanted": 3, "genomic": 6, "meditation": 1, "nanotech": 1, "supercharged": 0, "cytolitic": 0, "dimensional": 1, "gluon": 0, "worn": 1, "ancient": 0, "exotic": 1, "semi": 1, "superconductive": 0, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>assault / radial (right)</option>
+        <option value='{"label": "melee / core (left)", "arcane": 0, "biomorphic": 1, "detailed": 5, "enchanted": 0, "genomic": 1, "meditation": 3, "nanotech": 3, "supercharged": 3, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 1, "ancient": 0, "exotic": 1, "semi": 1, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 1 }'>melee / core (left)</option>
+        <option value='{"label": "melee / radial (right)", "arcane": 0, "biomorphic": 1, "detailed": 5, "enchanted": 0, "genomic": 0, "meditation": 2, "nanotech": 4, "supercharged": 4, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 1, "ancient": 0, "exotic": 1, "semi": 1, "superconductive": 0, "forbidden": 0, "living": 1, "self": 0, "thaumic": 0 }'>melee / radial (right)</option>
+        <option value='{"label": "support / core (left)", "arcane": 3, "biomorphic": 1, "detailed": 1, "enchanted": 2, "genomic": 3, "meditation": 2, "nanotech": 0, "supercharged": 4, "cytolitic": 1, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 1, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 0, "self": 1, "thaumic": 0 }'>support / core (left)</option>
+        <option value='{"label": "support / radial (right)", "arcane": 3, "biomorphic": 1, "detailed": 1, "enchanted": 3, "genomic": 2, "meditation": 2, "nanotech": 0, "supercharged": 4, "cytolitic": 1, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 1, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 0, "self": 0, "thaumic": 1 }'>support / radial (right)</option>
+      </select>
+    </div>
+
+        <!-- 2x2 grid of dropdowns -->
+        <div class="grid">
+            <div class="dropdown">
+                <div class="title">Destiny</div>
+                  <select id="dropdown-1" onchange="calculateTotals()">
+                  <option value='{"label": "none", "arcane": 0, "biomorphic": 0, "detailed": 0, "enchanted": 0, "genomic": 0, "meditation": 0, "nanotech": 0, "supercharged": 0, "cytolitic": 0, "dimensional": 0, "gluon": 0, "worn": 0, "ancient": 0, "exotic": 0, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>none</option>
+                  <option value='{"label": "ageless / core (left)", "arcane": 2, "biomorphic": 2, "detailed": 2, "enchanted": 2, "genomic": 3, "meditation": 2, "nanotech": 3, "supercharged": 0, "cytolitic": 1, "dimensional": 0, "gluon": 0, "worn": 1, "ancient": 0, "exotic": 0, "semi": 2, "superconductive": 0, "forbidden": 0, "living": 0, "self": 1, "thaumic": 0 }'>ageless / core (left)</option>
+                  <option value='{"label": "ageless / radial (right)", "arcane": 2, "biomorphic": 0, "detailed": 3, "enchanted": 2, "genomic": 3, "meditation": 2, "nanotech": 4, "supercharged": 0, "cytolitic": 1, "dimensional": 0, "gluon": 0, "worn": 1, "ancient": 0, "exotic": 0, "semi": 2, "superconductive": 0, "forbidden": 0, "living": 1, "self": 0, "thaumic": 0 }'>ageless / radial (right)</option>
+                  <option value='{"label": "barrier / core (left)", "arcane": 4, "biomorphic": 0, "detailed": 1, "enchanted": 0, "genomic": 3, "meditation": 3, "nanotech": 3, "supercharged": 2, "cytolitic": 0, "dimensional": 1, "gluon": 1, "worn": 0, "ancient": 1, "exotic": 0, "semi": 1, "superconductive": 0, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>barrier / core (left)</option>
+                  <option value='{"label": "barrier / radial (right)", "arcane": 4, "biomorphic": 0, "detailed": 2, "enchanted": 0, "genomic": 3, "meditation": 3, "nanotech": 2, "supercharged": 2, "cytolitic": 0, "dimensional": 1, "gluon": 1, "worn": 0, "ancient": 1, "exotic": 0, "semi": 1, "superconductive": 0, "forbidden": 0, "living": 1, "self": 0, "thaumic": 0 }'>barrier / radial (right)</option>
+                  <option value='{"label": "clarion / core (left)", "arcane": 2, "biomorphic": 6, "detailed": 2, "enchanted": 2, "genomic": 1, "meditation": 0, "nanotech": 3, "supercharged": 0, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 1, "ancient": 1, "exotic": 0, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 0, "self": 1, "thaumic": 0 }'>clarion / core (left)</option>
+                  <option value='{"label": "clarion / radial (right)", "arcane": 3, "biomorphic": 5, "detailed": 1, "enchanted": 2, "genomic": 1, "meditation": 0, "nanotech": 3, "supercharged": 1, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 1, "ancient": 1, "exotic": 0, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 0, "self": 0, "thaumic": 1 }'>clarion / radial (right)</option>
+                  <option value='{"label": "incandesence / t3 (mid right)", "arcane": 1, "biomorphic": 2, "detailed": 1, "enchanted": 1, "genomic": 1, "meditation": 0, "nanotech": 1, "supercharged": 0, "cytolitic": 0, "dimensional": 0, "gluon": 0, "worn": 1, "ancient": 0, "exotic": 0, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>incandesence / t3 (mid right)</option>
+                  <option value='{"label": "rebirth / radial (right)", "arcane": 2, "biomorphic": 1, "detailed": 1, "enchanted": 2, "genomic": 5, "meditation": 0, "nanotech": 2, "supercharged": 3, "cytolitic": 0, "dimensional": 1, "gluon": 0, "worn": 1, "ancient": 1, "exotic": 0, "semi": 1, "superconductive": 0, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>rebirth / radial (right)</option>
+                  </select>
+            </div>
+            <div class="dropdown">
+                <div class="title">Lore</div>
+                  <select id="dropdown-2" onchange="calculateTotals()">
+                  <option value='{"label": "none", "arcane": 0, "biomorphic": 0, "detailed": 0, "enchanted": 0, "genomic": 0, "meditation": 0, "nanotech": 0, "supercharged": 0, "cytolitic": 0, "dimensional": 0, "gluon": 0, "worn": 0, "ancient": 0, "exotic": 0, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>none</option>
+                  <option value='{"label": "banished / radial (right)", "arcane": 1, "biomorphic": 2, "detailed": 0, "enchanted": 4, "genomic": 0, "meditation": 5, "nanotech": 3, "supercharged": 1, "cytolitic": 1, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 2, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 1, "thaumic": 0 }'>banished / radial (right)</option>
+                  <option value='{"label": "carnival / t3 (left)", "arcane": 1, "biomorphic": 1, "detailed": 1, "enchanted": 0, "genomic": 2, "meditation": 1, "nanotech": 0, "supercharged": 1, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 0, "semi": 1, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>carnival / t3 (left)</option>
+                  <option value='{"label": "carnival / radial (right)", "arcane": 2, "biomorphic": 6, "detailed": 1, "enchanted": 0, "genomic": 3, "meditation": 2, "nanotech": 0, "supercharged": 2, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 1, "ancient": 1, "exotic": 0, "semi": 1, "superconductive": 0, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>carnival / radial (right)</option>
+                  <option value='{"label": "drones / radial (right)", "arcane": 1, "biomorphic": 2, "detailed": 0, "enchanted": 4, "genomic": 0, "meditation": 5, "nanotech": 3, "supercharged": 1, "cytolitic": 0, "dimensional": 1, "gluon": 0, "worn": 1, "ancient": 0, "exotic": 1, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 0, "self": 1, "thaumic": 0 }'>drones / radial (right)</option>
+                  <option value='{"label": "knives / radial (right)", "arcane": 5, "biomorphic": 2, "detailed": 0, "enchanted": 2, "genomic": 2, "meditation": 1, "nanotech": 3, "supercharged": 1, "cytolitic": 1, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 0, "semi": 1, "superconductive": 1, "forbidden": 0, "living": 0, "self": 0, "thaumic": 1 }'>knives / radial (right)</option>
+                  <option value='{"label": "longbow / radial (right)", "arcane": 1, "biomorphic": 2, "detailed": 0, "enchanted": 4, "genomic": 0, "meditation": 5, "nanotech": 3, "supercharged": 1, "cytolitic": 1, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 2, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 1, "thaumic": 0 }'>longbow / radial (right)</option>
+                  <option value='{"label": "rularuu / radial (right)", "arcane": 1, "biomorphic": 2, "detailed": 0, "enchanted": 4, "genomic": 3, "meditation": 5, "nanotech": 0, "supercharged": 1, "cytolitic": 0, "dimensional": 1, "gluon": 0, "worn": 1, "ancient": 0, "exotic": 0, "semi": 1, "superconductive": 1, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>rularuu / radial (right)</option>
+                  <option value='{"label": "seers / radial (right)", "arcane": 2, "biomorphic": 3, "detailed": 0, "enchanted": 3, "genomic": 3, "meditation": 0, "nanotech": 4, "supercharged": 1, "cytolitic": 0, "dimensional": 1, "gluon": 0, "worn": 1, "ancient": 1, "exotic": 0, "semi": 0, "superconductive": 0, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>seers / radial (right)</option>
+                  </select>
+            </div>
+            <div class="dropdown">
+                <div class="title">Interface</div>
+                  <select id="dropdown-3" onchange="calculateTotals()">
+                  <option value='{"label": "none", "arcane": 0, "biomorphic": 0, "detailed": 0, "enchanted": 0, "genomic": 0, "meditation": 0, "nanotech": 0, "supercharged": 0, "cytolitic": 0, "dimensional": 0, "gluon": 0, "worn": 0, "ancient": 0, "exotic": 0, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>none</option>
+                  <option value='{"label": "degenerative / core (left)", "arcane": 3, "biomorphic": 2, "detailed": 3, "enchanted": 1, "genomic": 0, "meditation": 2, "nanotech": 4, "supercharged": 1, "cytolitic": 1, "dimensional": 1, "gluon": 0, "worn": 0, "ancient": 0, "exotic": 0, "semi": 2, "superconductive": 0, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>degenerative / core (left)</option>
+                  <option value='{"label": "degenerative / t3 (far left)", "arcane": 1, "biomorphic": 2, "detailed": 1, "enchanted": 0, "genomic": 0, "meditation": 1, "nanotech": 1, "supercharged": 1, "cytolitic": 0, "dimensional": 1, "gluon": 0, "worn": 0, "ancient": 0, "exotic": 0, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>degenerative / t3 (far left)</option>
+                  <option value='{"label": "diamagnetic / core (left)", "arcane": 3, "biomorphic": 1, "detailed": 3, "enchanted": 2, "genomic": 3, "meditation": 0, "nanotech": 0, "supercharged": 4, "cytolitic": 1, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 1, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 1, "self": 0, "thaumic": 0 }'>diamagnetic / core (left)</option>
+                  <option value='{"label": "diamagnetic / radial (right)", "arcane": 3, "biomorphic": 1, "detailed": 2, "enchanted": 3, "genomic": 3, "meditation": 0, "nanotech": 0, "supercharged": 4, "cytolitic": 1, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 1, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 0, "self": 1, "thaumic": 0 }'>diamagnetic / radial (right)</option>
+                  <option value='{"label": "diamagetic / t3 (far left)", "arcane": 2, "biomorphic": 0, "detailed": 1, "enchanted": 2, "genomic": 1, "meditation": 0, "nanotech": 0, "supercharged": 1, "cytolitic": 1, "dimensional": 0, "gluon": 0, "worn": 0, "ancient": 0, "exotic": 1, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>diamagetic / t3 (far left)</option>
+                  <option value='{"label": "diamagnetic / t3 (far right)", "arcane": 1, "biomorphic": 1, "detailed": 2, "enchanted": 1, "genomic": 1, "meditation": 0, "nanotech": 0, "supercharged": 1, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 0, "semi": 1, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>diamagnetic / t3 (far right)</option>
+                  <option value='{"label": "reactive / core (left)", "arcane": 2, "biomorphic": 1, "detailed": 1, "enchanted": 1, "genomic": 2, "meditation": 4, "nanotech": 0, "supercharged": 5, "cytolitic": 0, "dimensional": 1, "gluon": 1, "worn": 0, "ancient": 1, "exotic": 0, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 1, "self": 0, "thaumic": 0 }'>reactive / core (left)</option>
+                  <option value='{"label": "reactive / t3 (far left)", "arcane": 1, "biomorphic": 0, "detailed": 0, "enchanted": 1, "genomic": 1, "meditation": 1, "nanotech": 0, "supercharged": 3, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 0, "semi": 1, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>reactive / t3 (far left)</option>
+                  </select>
+            </div>
+            <div class="dropdown">
+                <div class="title">Judgement</div>
+                <select id="dropdown-4" onchange="calculateTotals()">
+                <option value='{"label": "none", "arcane": 0, "biomorphic": 0, "detailed": 0, "enchanted": 0, "genomic": 0, "meditation": 0, "nanotech": 0, "supercharged": 0, "cytolitic": 0, "dimensional": 0, "gluon": 0, "worn": 0, "ancient": 0, "exotic": 0, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>none</option>
+                <option value='{"label": "ion / t3 (mid right)", "arcane": 0, "biomorphic": 0, "detailed": 2, "enchanted": 0, "genomic": 0, "meditation": 1, "nanotech": 2, "supercharged": 2, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 1, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>ion / t3 (mid right)</option>
+                <option value='{"label": "ion / core (left)", "arcane": 0, "biomorphic": 1, "detailed": 5, "enchanted": 0, "genomic": 1, "meditation": 3, "nanotech": 3, "supercharged": 3, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 1, "ancient": 0, "exotic": 1, "semi": 1, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 1 }'>ion / core (left)</option>
+                <option value='{"label": "mighty / radial (right)", "arcane": 4, "biomorphic": 0, "detailed": 1, "enchanted": 3, "genomic": 6, "meditation": 1, "nanotech": 1, "supercharged": 0, "cytolitic": 0, "dimensional": 1, "gluon": 0, "worn": 1, "ancient": 0, "exotic": 1, "semi": 1, "superconductive": 0, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>mighty / radial (right)</option>
+                <option value='{"label": "vorpal / core (left)", "arcane": 0, "biomorphic": 2, "detailed": 3, "enchanted": 3, "genomic": 1, "meditation": 3, "nanotech": 3, "supercharged": 1, "cytolitic": 1, "dimensional": 1, "gluon": 0, "worn": 0, "ancient": 1, "exotic": 0, "semi": 1, "superconductive": 0, "forbidden": 0, "living": 0, "self": 1, "thaumic": 0 }'>vorpal / core (left)</option>
+                <option value='{"label": "void / core (left)", "arcane": 5, "biomorphic": 0, "detailed": 2, "enchanted": 3, "genomic": 6, "meditation": 0, "nanotech": 0, "supercharged": 0, "cytolitic": 0, "dimensional": 1, "gluon": 0, "worn": 1, "ancient": 0, "exotic": 1, "semi": 1, "superconductive": 0, "forbidden": 0, "living": 1, "self": 0, "thaumic": 0 }'>void / core (left)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Dropdown below the 2x2 grid -->
+        <div class="dropdown">
+            <div class="title">Alpha</div>
+            <select id="dropdown-5" onchange="calculateTotals()">
+            <option value='{"label": "none", "arcane": 0, "biomorphic": 0, "detailed": 0, "enchanted": 0, "genomic": 0, "meditation": 0, "nanotech": 0, "supercharged": 0, "cytolitic": 0, "dimensional": 0, "gluon": 0, "worn": 0, "ancient": 0, "exotic": 0, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>none</option>
+            <option value='{"label": "agility / t3 (mid left)", "arcane": 1, "biomorphic": 1, "detailed": 1, "enchanted": 0, "genomic": 1, "meditation": 1, "nanotech": 2, "supercharged": 0, "cytolitic": 0, "dimensional": 0, "gluon": 0, "worn": 1, "ancient": 0, "exotic": 1, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 0 }'>agility / t3 (mid left)</option>
+            <option value='{"label": "agility / core (left)", "arcane": 1, "biomorphic": 3, "detailed": 1, "enchanted": 1, "genomic": 2, "meditation": 4, "nanotech": 2, "supercharged": 2, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 1, "ancient": 0, "exotic": 2, "semi": 0, "superconductive": 0, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>agility / core (left)</option>
+            <option value='{"label": "agility / radial (right)", "arcane": 1, "biomorphic": 3, "detailed": 1, "enchanted": 1, "genomic": 2, "meditation": 4, "nanotech": 2, "supercharged": 2, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 1, "ancient": 0, "exotic": 2, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 1, "thaumic": 0 }'>agility / radial (right)</option>
+            <option value='{"label": "cardiac / core (left)", "arcane": 1, "biomorphic": 4, "detailed": 3, "enchanted": 2, "genomic": 2, "meditation": 1, "nanotech": 0, "supercharged": 3, "cytolitic": 1, "dimensional": 0, "gluon": 1, "worn": 0, "ancient": 0, "exotic": 1, "semi": 0, "superconductive": 1, "forbidden": 0, "living": 1, "self": 0, "thaumic": 0 }'>cardiac / core (left)</option>
+            <option value='{"label": "musculature / core (left)", "arcane": 2, "biomorphic": 3, "detailed": 1, "enchanted": 1, "genomic": 2, "meditation": 3, "nanotech": 3, "supercharged": 1, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 1, "ancient": 0, "exotic": 2, "semi": 0, "superconductive": 0, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>musculature / core (left)</option>
+            <option value='{"label": "musculature / radial (right)", "arcane": 1, "biomorphic": 3, "detailed": 1, "enchanted": 1, "genomic": 2, "meditation": 4, "nanotech": 2, "supercharged": 2, "cytolitic": 0, "dimensional": 0, "gluon": 1, "worn": 1, "ancient": 0, "exotic": 2, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 1, "thaumic": 0 }'>musculature / radial (right)</option>
+            <option value='{"label": "nerve / core (left)", "arcane": 5, "biomorphic": 3, "detailed": 1, "enchanted": 2, "genomic": 1, "meditation": 3, "nanotech": 0, "supercharged": 1, "cytolitic": 1, "dimensional": 1, "gluon": 0, "worn": 0, "ancient": 0, "exotic": 2, "semi": 0, "superconductive": 0, "forbidden": 1, "living": 0, "self": 0, "thaumic": 0 }'>nerve / core (left)</option>
+            <option value='{"label": "spiritual / core (left)", "arcane": 6, "biomorphic": 1, "detailed": 1, "enchanted": 4, "genomic": 1, "meditation": 2, "nanotech": 0, "supercharged": 3, "cytolitic": 0, "dimensional": 1, "gluon": 1, "worn": 0, "ancient": 2, "exotic": 0, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 1 }'>spiritual / core (left)</option>
+            <option value='{"label": "vigor / core (left)", "arcane": 4, "biomorphic": 1, "detailed": 1, "enchanted": 4, "genomic": 1, "meditation": 2, "nanotech": 0, "supercharged": 3, "cytolitic": 0, "dimensional": 1, "gluon": 1, "worn": 0, "ancient": 2, "exotic": 0, "semi": 0, "superconductive": 0, "forbidden": 0, "living": 0, "self": 0, "thaumic": 1 }'>vigor / core (left)</option>
+            </select>
+        </div>
+    </div>
+
+<div class="grid2">
+    <div class="container">
+        <div class="title">Common</div>
+            <div class="grid">
+                <div class="container">
+                    <p>Arcane Total: <span id="arcane-total">0</span></p>
+                    <p>Biomorphic Total: <span id="biomorphic-total">0</span></p>
+                    <p>Detailed Total: <span id="detailed-total">0</span></p>
+                    <p>Enchanted Total: <span id="enchanted-total">0</span></p>
+                </div>
+                <div class="container">
+                    <p>Genomic Total: <span id="genomic-total">0</span></p>
+                    <p>Meditation Total: <span id="meditation-total">0</span></p>
+                    <p>Nanotech Total: <span id="nanotech-total">0</span></p>
+                    <p>Supercharged Total: <span id="supercharged-total">0</span></p>
+                </div>
+            </div>
+        </div>
+    <div class="container">
+        <div class="title">Uncommon</div>
+            
+                <div class="container">
+                    <p>Cytolitic Total: <span id="cytolitic-total">0</span></p>
+                    <p>Dimensional Total: <span id="dimensional-total">0</span></p>
+                    <p>Gluon Total: <span id="gluon-total">0</span></p>
+                    <p>Worn Total: <span id="worn-total">0</span></p>
+                </div>
+             
+    </div>
+    <div class="container">
+        <div class="title">Rare</div>
+            
+                <div class="container">
+                    <p>Ancient Total: <span id="ancient-total">0</span></p>
+                    <p>Exotic Total: <span id="exotic-total">0</span></p>
+                    <p>Semi-Conscious Total: <span id="semi-total">0</span></p>
+                    <p>Superconductive Total: <span id="superconductive-total">0</span></p>
+                </div>
+            
+    </div>
+    <div class="container">
+     <div class="title">Very Rare</div>
+            
+                <div class="container">
+                    <p>Forbidden Total: <span id="forbidden-total">0</span></p>
+                    <p>Living Total: <span id="living-total">0</span></p>
+                    <p>Self Total: <span id="self-total">0</span></p>
+                    <p>Thaumic Total: <span id="thaumic-total">0</span></p>
+                </div>
+            
+    </div>
+</div>
+<!--<button class="download-button" onclick="downloadHTML()">Download Character Sheet</button> -->
+</div>
+
+
+<script>
+    function calculateTotals() {
+        let arcaneTotal = 0;
+        let biomorphicTotal = 0;
+        let detailedTotal = 0;
+        let enchantedTotal = 0;
+        let genomicTotal = 0;
+        let meditationTotal = 0;
+        let nanotechTotal = 0;
+        let superchargedTotal = 0;
+        let cytoliticTotal = 0;
+        let dimensionalTotal = 0;
+        let gluonTotal = 0;
+        let wornTotal = 0;
+        let ancientTotal = 0;
+        let exoticTotal = 0;
+        let semiTotal = 0;
+        let superconductiveTotal = 0;
+        let forbiddenTotal = 0;
+        let livingTotal = 0;
+        let selfTotal = 0;
+        let thaumicTotal = 0;
+
+        for (let i = 0; i < 6; i++) {
+            const select = document.getElementById(`dropdown-${i}`);
+            const selectedOption = JSON.parse(select.value);
+
+            arcaneTotal += selectedOption.arcane;
+            biomorphicTotal += selectedOption.biomorphic;
+            detailedTotal += selectedOption.detailed;
+            enchantedTotal += selectedOption.enchanted;
+            genomicTotal += selectedOption.genomic;
+            meditationTotal += selectedOption.meditation;
+            nanotechTotal += selectedOption.nanotech;
+            superchargedTotal += selectedOption.supercharged;
+            cytoliticTotal += selectedOption.cytolitic;
+            dimensionalTotal += selectedOption.dimensional;
+            gluonTotal += selectedOption.gluon;
+            wornTotal += selectedOption.worn;
+            ancientTotal += selectedOption.ancient;
+            exoticTotal += selectedOption.exotic;
+            semiTotal += selectedOption.semi;
+            superconductiveTotal += selectedOption.superconductive;
+            forbiddenTotal += selectedOption.forbidden;
+            livingTotal += selectedOption.living;
+            selfTotal += selectedOption.self;
+            thaumicTotal += selectedOption.thaumic;
+        }
+
+        document.getElementById('arcane-total').textContent = arcaneTotal;
+        document.getElementById('biomorphic-total').textContent = biomorphicTotal;
+        document.getElementById('detailed-total').textContent = detailedTotal;
+        document.getElementById('enchanted-total').textContent = enchantedTotal;
+        document.getElementById('genomic-total').textContent = genomicTotal;
+        document.getElementById('meditation-total').textContent = meditationTotal;
+        document.getElementById('nanotech-total').textContent = nanotechTotal;
+        document.getElementById('supercharged-total').textContent = superchargedTotal;
+        document.getElementById('cytolitic-total').textContent = cytoliticTotal;
+        document.getElementById('dimensional-total').textContent = dimensionalTotal;
+        document.getElementById('gluon-total').textContent = gluonTotal;
+        document.getElementById('worn-total').textContent = wornTotal;
+        document.getElementById('ancient-total').textContent = ancientTotal;
+        document.getElementById('exotic-total').textContent = exoticTotal;
+        document.getElementById('semi-total').textContent = semiTotal;
+        document.getElementById('superconductive-total').textContent = superconductiveTotal;
+        document.getElementById('forbidden-total').textContent = forbiddenTotal;
+        document.getElementById('living-total').textContent = livingTotal;
+        document.getElementById('self-total').textContent = selfTotal;
+        document.getElementById('thaumic-total').textContent = thaumicTotal;
+    }
+/*
+
+    function downloadHTML() {
+        //var characterName = document.getElementById('character').value;
+        //var arcanetotal = document.getElementById('arcane-total').textContent;
+        /*var biomorphictotal = biomorphicTotal;
+        var detailedtotal = detailedTotal;
+        var enchantedtotal = enchantedTotal;
+        var genomictotal = genomicTotal;
+        var meditationtotal = meditationTotal;
+        var nanotechtotal = nanotechTotal;
+        var superchargedtotal = superchargedTotal;
+        var cytolitictotal = cytoliticTotal;
+        var dimensionaltotal = dimensionalTotal;
+        var gluontotal = gluonTotal;
+        var worntotal = wornTotal;
+        var ancienttotal = ancientTotal;
+        var exotictotal = exoticTotal;
+        var semitotal = semiTotal;
+        var superconductivetotal = superconductiveTotal;
+        var forbiddentotal = forbiddenTotal;
+        var livingtotal = livingTotal;
+        var selftotal = selfTotal;
+        var thaumictotal = thaumicTotal;*/
+
+       /* var htmlContent = "
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, inital-scale=1.0">
+            <title>Character Incarnate Powers</title>
+        </head>
+        <body>
+            <p><strong>Character Name:</strong> ${characterName}</p>
+            <p><strong>BoM:</strong> ${totals} </p>
+        ";
+
+       // var blob = new Blob([htmlContent], {type: 'text/html';charset=utf-8 });
+       // var link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "character_details.html";
+        link.click();
+    }
+*/
+
+
+</script>
+</body>
+</html>
+
+
