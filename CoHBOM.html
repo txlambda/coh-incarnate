@@ -82,7 +82,7 @@
         .text-box {
           margin: 15px 0;
         }
-        .download-Button {
+        .Button {
             margin-top: 15px;
             padding: 10px;
             background-color: #2072BB;
@@ -91,7 +91,7 @@
             cursor: pointer;
             border-radius: 5px;
         }
-        .download-Button:hover{
+        .Button:hover{
             background-color: #003C68;
         }
   </style>
@@ -252,9 +252,9 @@
 <!--<button class="download-button" onclick="downloadHTML()">Download Character Sheet</button> -->
 </div>
 </div>  
-<div class = "download-Button">
-<button id="captureBtn">Download Character Snapshot</button>
-</div>
+
+    <button id="captureBtn">Download Character Snapshot</button>
+
 </table>
 
 <script>
@@ -338,51 +338,6 @@
                 link.click();
             });
         });
-/*
-
-    function downloadHTML() {
-        //var characterName = document.getElementById('character').value;
-        //var arcanetotal = document.getElementById('arcane-total').textContent;
-        /*var biomorphictotal = biomorphicTotal;
-        var detailedtotal = detailedTotal;
-        var enchantedtotal = enchantedTotal;
-        var genomictotal = genomicTotal;
-        var meditationtotal = meditationTotal;
-        var nanotechtotal = nanotechTotal;
-        var superchargedtotal = superchargedTotal;
-        var cytolitictotal = cytoliticTotal;
-        var dimensionaltotal = dimensionalTotal;
-        var gluontotal = gluonTotal;
-        var worntotal = wornTotal;
-        var ancienttotal = ancientTotal;
-        var exotictotal = exoticTotal;
-        var semitotal = semiTotal;
-        var superconductivetotal = superconductiveTotal;
-        var forbiddentotal = forbiddenTotal;
-        var livingtotal = livingTotal;
-        var selftotal = selfTotal;
-        var thaumictotal = thaumicTotal;*/
-
-       /* var htmlContent = "
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, inital-scale=1.0">
-            <title>Character Incarnate Powers</title>
-        </head>
-        <body>
-            <p><strong>Character Name:</strong> ${characterName}</p>
-            <p><strong>BoM:</strong> ${totals} </p>
-        ";
-
-       // var blob = new Blob([htmlContent], {type: 'text/html';charset=utf-8 });
-       // var link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = "character_details.html";
-        link.click();
-    }
-*/
 
 
 </script>
