@@ -296,14 +296,14 @@
         document.getElementById('self-total').textContent = selfTotal;
         document.getElementById('thaumic-total').textContent = thaumicTotal;
         document.getElementById('captureBtn').addEventListener('click', function() {
-              let charName = document.getElementbyID('character').value.trim() || 'Character';
-              html2canvas(document.body).then(canvas => {
-                  let link = document.createElement('a');
-                  link.href = canvas.toDataURL('image/png');
-                  link.download = charName + '_Snapshot.png';
-                  link.click();
-              });
-          });
+            let charName = document.getElementById('character').value.trim() || 'Character';
+            html2canvas(document.body).then(canvas => {
+                let link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = charName + '_Snapshot.png';
+                link.click();
+            });
+        });
     }
 /*
 
