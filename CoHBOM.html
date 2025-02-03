@@ -222,6 +222,8 @@
 <!--<button class="download-button" onclick="downloadHTML()">Download Character Sheet</button> -->
 </div>
 
+<button id="captureBtn">Download Snapshot</button>
+
 
 <script>
     function calculateTotals() {
@@ -292,6 +294,14 @@
         document.getElementById('living-total').textContent = livingTotal;
         document.getElementById('self-total').textContent = selfTotal;
         document.getElementById('thaumic-total').textContent = thaumicTotal;
+        document.getElementById('captureBtn').addEventListener('click', function() {
+              html2canvas(document.body).then(canvas => {
+                  let link = document.createElement('a');
+                  link.href = canvas.toDataURL('image/png');
+                  link.download = 'webpage_snapshot.png';
+                  link.click();
+              });
+          });
     }
 /*
 
