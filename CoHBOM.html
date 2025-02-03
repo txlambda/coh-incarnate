@@ -295,7 +295,10 @@
         document.getElementById('living-total').textContent = livingTotal;
         document.getElementById('self-total').textContent = selfTotal;
         document.getElementById('thaumic-total').textContent = thaumicTotal;
-        document.getElementById('captureBtn').addEventListener('click', function() {
+
+    }
+
+          document.getElementById('captureBtn').addEventListener('click', function() {
             let charName = document.getElementById('character').value.trim() || 'Character';
             html2canvas(document.body).then(canvas => {
                 let link = document.createElement('a');
@@ -304,7 +307,6 @@
                 link.click();
             });
         });
-    }
 /*
 
     function downloadHTML() {
